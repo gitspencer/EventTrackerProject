@@ -42,7 +42,7 @@ public class DrinkController {
 	@PostMapping("drinks")
 	public Drink addDrink(@RequestBody Drink drink, HttpServletResponse res, HttpServletRequest req) {
 //		try {
-			drink = drinkService.create(drink);
+			drink = drinkService.createDrink(drink);
 //			if (drink == null) {
 //				res.setStatus(404);
 //			} else {
@@ -60,12 +60,16 @@ public class DrinkController {
 	}
 	
 	
-	@PutMapping("drinks/{id}")
+	@PutMapping("drinks/{drinkId}")
+	public Drink editDrink(@PathVariable Integer drinkId, @RequestBody Drink drink, HttpServletResponse res, HttpServletRequest req) {
+		drink = drinkService.updateDrink(drinkId, drink);
+		return drink;
+	}
 	
 	
 	@DeleteMapping("drinks/{drinkId}")
 	public void removeDrink(@PathVariable Integer drinkId, HttpServletResponse res) {
-		if (drinkService.delete(drinkId)) {
+		if (drinkService.deleteDrink(drinkId)) {
 			res.setStatus(204);
 		} else {
 			res.setStatus(404);

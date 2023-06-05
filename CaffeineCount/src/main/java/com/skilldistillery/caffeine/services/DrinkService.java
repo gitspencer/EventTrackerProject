@@ -8,7 +8,7 @@ public interface DrinkService {
 	
 	List<Drink> listAllDrinks();
 	Drink getDrink(int drinkId);
-	Drink create(Drink drink);
-	Drink update(int drinkId, Drink drink);
-	boolean delete(int drinkId);
+	Drink createDrink(Drink drink);
+	Drink updateDrink(int drinkId, Drink drink);
+	boolean deleteDrink(int drinkId);
  }

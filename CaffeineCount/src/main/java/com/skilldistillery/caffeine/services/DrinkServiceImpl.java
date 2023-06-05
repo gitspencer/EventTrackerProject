@@ -31,19 +31,32 @@ public class DrinkServiceImpl implements DrinkService {
 	}
 
 	@Override
-	public Drink create(Drink drink) {
+	public Drink createDrink(Drink drink) {
 		drinkRepo.saveAndFlush(drink);
 		return null;
 	}
 
+//	@Override
+//	public Drink updateDrink(int drinkId, Drink drink) {
+//		Optional<Drink> drinkToUpdate = drinkRepo.findById(drinkId);
+//		if (drinkToUpdate != null) {
+//			drinkToUpdate.setName(drink.getName());
+//			drinkToUpdate.setSize(drink.getSize());
+//			drinkToUpdate.setCaffeine(drink.getCaffeine());
+//			drinkToUpdate.setImageUrl(drink.getImageUrl());
+//			return drinkRepo.saveAndFlush(drinkToUpdate);
+//		}
+//		return null;
+//	}
+	
 	@Override
-	public Drink update(int drinkId, Drink drink) {
+	public Drink updateDrink(int drinkId, Drink drink) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean delete(int drinkId) {
+	public boolean deleteDrink(int drinkId) {
 		boolean deleted = false;
 		Optional<Drink> toDeleteOpt = drinkRepo.findById(drinkId);
 		if(toDeleteOpt.isPresent()) {
