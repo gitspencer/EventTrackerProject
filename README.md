@@ -1,7 +1,7 @@
 # EventTrackerProject
 
 # Description
-	Web application to track caffeine consumption with the ability to perform CRUD on entries.
+Web application to track caffeine consumption with the ability to perform CRUD on entries.
 
 # Technologies Used
 - Java
