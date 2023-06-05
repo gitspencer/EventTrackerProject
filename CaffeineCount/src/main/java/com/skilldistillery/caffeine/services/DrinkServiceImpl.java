@@ -36,22 +36,17 @@ public class DrinkServiceImpl implements DrinkService {
 		return null;
 	}
 
-//	@Override
-//	public Drink updateDrink(int drinkId, Drink drink) {
-//		Optional<Drink> drinkToUpdate = drinkRepo.findById(drinkId);
-//		if (drinkToUpdate != null) {
-//			drinkToUpdate.setName(drink.getName());
-//			drinkToUpdate.setSize(drink.getSize());
-//			drinkToUpdate.setCaffeine(drink.getCaffeine());
-//			drinkToUpdate.setImageUrl(drink.getImageUrl());
-//			return drinkRepo.saveAndFlush(drinkToUpdate);
-//		}
-//		return null;
-//	}
-	
 	@Override
 	public Drink updateDrink(int drinkId, Drink drink) {
-		// TODO Auto-generated method stub
+		Optional<Drink> drinkToUpdate = drinkRepo.findById(drinkId);
+		if (drinkToUpdate.isPresent()) {
+			Drink existingDrink = drinkToUpdate.get();
+			existingDrink.setName(drink.getName());
+			existingDrink.setSize(drink.getSize());
+			existingDrink.setCaffeine(drink.getCaffeine());
+			existingDrink.setImageUrl(drink.getImageUrl());
+			return drinkRepo.saveAndFlush(existingDrink);
+		}
 		return null;
 	}
 
