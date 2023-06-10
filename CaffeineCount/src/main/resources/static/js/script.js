@@ -200,39 +200,66 @@ function updateDrink(drink) {
 	let updateForm = document.createElement('form');
 	updateForm.textContent = '';
 	drinkDetailDiv.appendChild(updateForm);
+	
+	let div1 = document.createElement('div');
+	div1.textContent = '';
+	div1.classList.add('form-group')
+	updateForm.appendChild(div1);
 
 	let nameLabel = document.createElement('label');
 	nameLabel.textContent = 'Drink: ';
-	updateForm.appendChild(nameLabel);
+	div1.appendChild(nameLabel);
 	let nameInput = document.createElement('input');
 	nameInput.textContent = '';
 	nameInput.placeholder = 'Cappuccino';
-	updateForm.appendChild(nameInput);
+	nameInput.classList.add('form-control');
+	div1.appendChild(nameInput);
+
+	let div2 = document.createElement('div');
+	div2.textContent = '';
+	div2.classList.add('form-group')
+	updateForm.appendChild(div2);
 
 	let sizeLabel = document.createElement('label');
 	sizeLabel.textContent = 'Size: ';
-	updateForm.appendChild(sizeLabel);
+	div2.appendChild(sizeLabel);
 	let sizeInput = document.createElement('input');
 	sizeInput.textContent = '';
 	sizeInput.placeholder = 'ounces';
-	updateForm.appendChild(sizeInput);
+	sizeInput.classList.add('form-control');
+	div2.appendChild(sizeInput);
+
+	let div3 = document.createElement('div');
+	div3.textContent = '';
+	div3.classList.add('form-group')
+	updateForm.appendChild(div3);
 
 	let caffeineLabel = document.createElement('label');
 	caffeineLabel.textContent = 'Caffeine: ';
-	updateForm.appendChild(caffeineLabel);
+	div3.appendChild(caffeineLabel);
 	let caffeineInput = document.createElement('input');
 	caffeineInput.textContent = '';
 	caffeineInput.placeholder = 'milligrams';
-	updateForm.appendChild(caffeineInput);
+	caffeineInput.classList.add('form-control');
+	div3.appendChild(caffeineInput);
+
+	let div4 = document.createElement('div');
+	div4.textContent = '';
+	div4.classList.add('form-group')
+	updateForm.appendChild(div4);
 
 	let picLabel = document.createElement('label');
 	picLabel.textContent = 'Picture URL: ';
-	updateForm.appendChild(picLabel);
+	div4.appendChild(picLabel);
 	let picInput = document.createElement('input');
 	picInput.textContent = '';
 	picInput.placeholder = 'http://www.cabincreekcoffeealpena.com/';
-	updateForm.appendChild(picInput);
+	picInput.classList.add('form-control');
+	div4.appendChild(picInput);
 
+	let br = document.createElement('br');
+	br.textContent = '';
+	updateForm.appendChild(br);
 
 	let submitButton = document.createElement('button');
 	submitButton.textContent = 'Update';
