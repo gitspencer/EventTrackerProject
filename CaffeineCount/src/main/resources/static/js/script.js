@@ -19,7 +19,8 @@ function init() {
 			imageUrl: form.imageUrl.value
 		};
 		//console.log(theDrink);
-		if (theDrink.name !== "" && theDrink.caffeine !== "" && theDrink.size !== "") {
+		if (theDrink.name !== "" && theDrink.caffeine !== "" && theDrink.size !== ""
+			&& theDrink.size < 1000 && theDrink.size >= 0 && theDrink.caffeine < 2000 && theDrink.caffeine >= 0) {
 			addDrink(theDrink);
 		}
 
@@ -200,7 +201,7 @@ function updateDrink(drink) {
 	let updateForm = document.createElement('form');
 	updateForm.textContent = '';
 	drinkDetailDiv.appendChild(updateForm);
-	
+
 	let div1 = document.createElement('div');
 	div1.textContent = '';
 	div1.classList.add('form-group')
@@ -213,6 +214,7 @@ function updateDrink(drink) {
 	nameInput.textContent = '';
 	nameInput.placeholder = 'Cappuccino';
 	nameInput.classList.add('form-control');
+	nameInput.required = true;
 	div1.appendChild(nameInput);
 
 	let div2 = document.createElement('div');
@@ -227,6 +229,9 @@ function updateDrink(drink) {
 	sizeInput.textContent = '';
 	sizeInput.placeholder = 'ounces';
 	sizeInput.classList.add('form-control');
+	sizeInput.setAttribute("type", "number");
+	sizeInput.setAttribute("min", "0");
+	sizeInput.setAttribute("max", "1000");
 	div2.appendChild(sizeInput);
 
 	let div3 = document.createElement('div');
@@ -241,6 +246,9 @@ function updateDrink(drink) {
 	caffeineInput.textContent = '';
 	caffeineInput.placeholder = 'milligrams';
 	caffeineInput.classList.add('form-control');
+	caffeineInput.setAttribute("type", "number");
+	caffeineInput.setAttribute("min", "0");
+	caffeineInput.setAttribute("max", "2000");
 	div3.appendChild(caffeineInput);
 
 	let div4 = document.createElement('div');
@@ -276,12 +284,13 @@ function updateDrink(drink) {
 			size: sizeInput.value,
 			imageUrl: picInput.value
 		}
-		console.log(updatedDrink);
-		if (updatedDrink.name !== "" && updatedDrink.caffeine !== "" && updatedDrink.size !== "") {
+		//console.log(updatedDrink);
+		if (updatedDrink.name !== "" && updatedDrink.caffeine !== "" && updatedDrink.size !== ""
+			&& updatedDrink.size < 1000 & updatedDrink.size >= 0 && updatedDrink.caffeine < 2000 && updatedDrink.caffeine >= 0) {
 			updateDrinkXHR(drinkId, updatedDrink);
 		}
 	});
-	
+
 	let homeButton = document.createElement('button');
 	homeButton.textContent = 'Home';
 	homeButton.classList.add('btn');
@@ -293,7 +302,7 @@ function updateDrink(drink) {
 		window.location.reload();
 	});
 
-	
+
 }
 
 function updateDrinkXHR(updatedDrinkId, updatedDrink) {
