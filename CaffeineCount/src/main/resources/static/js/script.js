@@ -19,7 +19,7 @@ function init() {
 			imageUrl: form.imageUrl.value
 		};
 		//console.log(theDrink);
-		if (theDrink.name !== "") {
+		if (theDrink.name !== "" && theDrink.caffeine !== "" && theDrink.size !== "") {
 			addDrink(theDrink);
 		}
 
@@ -250,7 +250,7 @@ function updateDrink(drink) {
 			imageUrl: picInput.value
 		}
 		console.log(updatedDrink);
-		if (updatedDrink.name !== "") {
+		if (updatedDrink.name !== "" && updatedDrink.caffeine !== "" && updatedDrink.size !== "") {
 			updateDrinkXHR(drinkId, updatedDrink);
 		}
 	});
