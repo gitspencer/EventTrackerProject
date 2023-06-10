@@ -1,16 +1,16 @@
 console.log('script.js loaded');
 
-window.addEventListener('load', function(e){
+window.addEventListener('load', function(e) {
 	console.log('Window loaded, DOM created');
 	init();
 });
 
-function init(){
+function init() {
 	console.log('In init()');
 	//load all drinks
 	getAllDrinks();
 	//Event listeners for existing buttons/forms etc.
-	document.newDrinkForm.addDrinkButton.addEventListener('click', function(e){
+	document.newDrinkForm.addDrinkButton.addEventListener('click', function(e) {
 		let form = document.newDrinkForm;
 		let theDrink = {
 			name: form.name.value,
@@ -19,48 +19,48 @@ function init(){
 			imageUrl: form.imageUrl.value
 		};
 		//console.log(theDrink);
-		if (theDrink.name !== ""){
+		if (theDrink.name !== "") {
 			addDrink(theDrink);
 		}
-			
+
 	});
 }
 
-function getAllDrinks(){
+function getAllDrinks() {
 	//XHR to GET list endpoints of API, call displayAllEvents to show on page
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/drinks');
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState === 4) {
-			if(xhr.status === 200 || xhr.status === 201) {
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
 				let drinkList = JSON.parse(xhr.responseText);
 				//console.log(drinkList);
 				displayAllDrinks(drinkList);
-			} 
+			}
 			else {
 				displayError(" Error getting drinks")
 			}
 		}
 	};
-	
+
 	xhr.send();
 }
 
-function displayAllDrinks(drinkList){
+function displayAllDrinks(drinkList) {
 	let tbody = document.getElementById('drinkListTableBody');
 	tbody.textContent = '';
-	if(drinkList && Array.isArray(drinkList)){
-		for(let drink of drinkList) {
+	if (drinkList && Array.isArray(drinkList)) {
+		for (let drink of drinkList) {
 			let tr = document.createElement('tr');
 			tbody.appendChild(tr);
-			
+
 			let td = document.createElement('td');
 			tr.appendChild(td);
 			let imgTag = document.createElement('img');
 			imgTag.src = drink.imageUrl
 			imgTag.classList.add('thumbnailImage');
 			td.appendChild(imgTag);
-			
+
 			td = document.createElement('td');
 			td.textContent = drink.name;
 			tr.appendChild(td);
@@ -70,31 +70,31 @@ function displayAllDrinks(drinkList){
 			td = document.createElement('td');
 			td.textContent = drink.caffeine;
 			tr.appendChild(td);
-			
-			tr.addEventListener('click', function(e){
+
+			tr.addEventListener('click', function(e) {
 				let drinkId = drink.id;
 				getDrinkDetails(drinkId);
 			});
 		}
 	}
-	
+
 }
 
-function getDrinkDetails(drinkId){
+function getDrinkDetails(drinkId) {
 	//XHR for single drink
 	//console.log('Getting stand details for drink id: ' + drinkId);
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/drinks/' + drinkId);
-	xhr.onreadystatechange = function(){		
-		if(xhr.readyState === 4) {
-			if(xhr.status === 200 || xhr.status === 201) {
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
 				let drink = JSON.parse(xhr.responseText);
 				//console.log(drink);
-				
+
 				//hides divs not part of single drink view
 				document.getElementById('drinkListDiv').style.visibility = 'hidden';
 				document.getElementById('newDrinkFormDiv').style.visibility = 'hidden';
-				
+
 				displayDrinkDetails(drink);
 			}
 			else {
@@ -109,58 +109,72 @@ function displayDrinkDetails(drink) {
 	//DOM - display in drinkDetailDiv
 	let detailDiv = document.getElementById('drinkDetailDiv');
 	detailDiv.textContent = '';
-	
+
 	let imgTagLarge = document.createElement('img');
 	imgTagLarge.src = drink.imageUrl
 	imgTagLarge.classList.add('imageLarge');
 	detailDiv.appendChild(imgTagLarge);
-	
+
 	let h3 = document.createElement('h3');
 	h3.textContent = drink.name;
 	detailDiv.appendChild(h3);
-	
+
 	let ul = document.createElement('ul');
 	ul.textContent = '';
 	detailDiv.appendChild(ul);
 	let size = document.createElement('li');
-	size.textContent = 'Size: ' +  drink.size + ' ounces';
+	size.textContent = 'Size: ' + drink.size + ' ounces';
 	ul.appendChild(size);
 	let caffeine = document.createElement('li');
 	caffeine.textContent = 'Caffeine: ' + drink.caffeine + ' milligrams';
-	ul.appendChild(caffeine);	
-	
+	ul.appendChild(caffeine);
+
 	let dataAggr = document.createElement('li');
 	let caffeinePerOz = Math.round((drink.caffeine / drink.size) * 100) / 100;
 	dataAggr.textContent = 'Concentration: ' + caffeinePerOz + ' mg/fl oz';
 	ul.appendChild(dataAggr);
-	
-	
-	
-	let drinkDetailForm = document.getElementById("drinkDetailForm");
-	drinkDetailForm.textContent = '';
-	
+
 	let updateButton = document.createElement('button');
-	updateButton.textContent ='Update';
+	updateButton.textContent = 'Update';
 	updateButton.classList.add('btn');
 	updateButton.classList.add('btn-primary');
-	drinkDetailForm.appendChild(updateButton);
-	
-	updateButton.addEventListener('click', function(e){
-		console.log(drink.id);
-		updateDrink(drink.id);
+	updateButton.classList.add('me-1');
+	detailDiv.appendChild(updateButton);
+
+	updateButton.addEventListener('click', function(e) {
+		//console.log(drink);
+		updateDrink(drink);
 	});
 
 	let deleteButton = document.createElement('button');
-	deleteButton.textContent ='Delete';
+	deleteButton.textContent = 'Delete';
 	deleteButton.classList.add('btn');
-	deleteButton.classList.add('btn-danger');	
-	drinkDetailForm.appendChild(deleteButton);
+	deleteButton.classList.add('btn-danger');
+	deleteButton.classList.add('me-1');
+	detailDiv.appendChild(deleteButton);
+
+	deleteButton.addEventListener('click', function(e) {
+		//console.log(drink.id);
+		deleteDrink(drink.id);
+	});
+
+	let homeButton = document.createElement('button');
+	homeButton.textContent = 'Home';
+	homeButton.classList.add('btn');
+	homeButton.classList.add('btn-warning');
+	homeButton.classList.add('me-1');
+	detailDiv.appendChild(homeButton);
+
+	homeButton.addEventListener('click', function(e) {
+		window.location.reload();
+	});
+
 }
 
 function addDrink(newDrink) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/drinks');
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 201 || xhr.status === 200) {
 				getAllDrinks();
@@ -175,17 +189,94 @@ function addDrink(newDrink) {
 	xhr.send(newDrinkJson);
 }
 
-function updateDrink(drinkId){
+function updateDrink(drink) {
+	let drinkId = drink.id;
+	//console.log(drink);
+	//console.log(drinkId);
+
+	let drinkDetailDiv = document.getElementById('drinkDetailDiv');
+	drinkDetailDiv.textContent = '';
+
+	let updateForm = document.createElement('form');
+	updateForm.textContent = '';
+	drinkDetailDiv.appendChild(updateForm);
+
+	let nameLabel = document.createElement('label');
+	nameLabel.textContent = 'Drink: ';
+	updateForm.appendChild(nameLabel);
+	let nameInput = document.createElement('input');
+	nameInput.textContent = '';
+	nameInput.placeholder = 'Cappuccino';
+	updateForm.appendChild(nameInput);
+
+	let sizeLabel = document.createElement('label');
+	sizeLabel.textContent = 'Size: ';
+	updateForm.appendChild(sizeLabel);
+	let sizeInput = document.createElement('input');
+	sizeInput.textContent = '';
+	sizeInput.placeholder = 'ounces';
+	updateForm.appendChild(sizeInput);
+
+	let caffeineLabel = document.createElement('label');
+	caffeineLabel.textContent = 'Caffeine: ';
+	updateForm.appendChild(caffeineLabel);
+	let caffeineInput = document.createElement('input');
+	caffeineInput.textContent = '';
+	caffeineInput.placeholder = 'milligrams';
+	updateForm.appendChild(caffeineInput);
+
+	let picLabel = document.createElement('label');
+	picLabel.textContent = 'Picture URL: ';
+	updateForm.appendChild(picLabel);
+	let picInput = document.createElement('input');
+	picInput.textContent = '';
+	picInput.placeholder = 'http://www.cabincreekcoffeealpena.com/';
+	updateForm.appendChild(picInput);
+
+
+	let submitButton = document.createElement('button');
+	submitButton.textContent = 'Update';
+	submitButton.classList.add('btn');
+	submitButton.classList.add('btn-primary');
+	submitButton.classList.add('me-1');
+	updateForm.appendChild(submitButton);
+
+	submitButton.addEventListener('click', function(e) {
+		let updatedDrink = {
+			id: drinkId,
+			name: nameInput.value,
+			caffeine: caffeineInput.value,
+			size: sizeInput.value,
+			imageUrl: picInput.value
+		}
+		console.log(updatedDrink);
+		if (updatedDrink.name !== "") {
+			updateDrinkXHR(drinkId, updatedDrink);
+		}
+	});
+	
+	let homeButton = document.createElement('button');
+	homeButton.textContent = 'Home';
+	homeButton.classList.add('btn');
+	homeButton.classList.add('btn-warning');
+	homeButton.classList.add('me-1');
+	updateForm.appendChild(homeButton);
+
+	homeButton.addEventListener('click', function(e) {
+		window.location.reload();
+	});
+
 	
 }
 
-function updateDrinkXHR(updatedDrink){
+function updateDrinkXHR(updatedDrinkId, updatedDrink) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'api/drinks/' + updatedDrink.id);
-	xhr.onreadystatechange = function(){
+	xhr.open('PUT', 'api/drinks/' + updatedDrinkId);
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				getAllDrinks();
+				window.location.reload();
 			}
 			else {
 				displayError("Drink was not updated.");
@@ -201,10 +292,11 @@ function deleteDrink(drinkId) {
 	//call “get all” method on successful delete, to refresh displayed list.
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', 'api/drinks/' + drinkId);
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			if(xhr.status === 204 || xhr.status === 200) {
+			if (xhr.status === 204 || xhr.status === 200) {
 				getAllDrinks();
+				window.location.reload();
 			}
 			else {
 				displayError("Error deleting drink.")
@@ -214,7 +306,7 @@ function deleteDrink(drinkId) {
 	xhr.send();
 }
 
-function displayError(errorMessage){
+function displayError(errorMessage) {
 	let detailDiv = document.getElementById('drinkDetailDiv');
 	detailDiv.textContent = '';
 	let messageElement = document.createElement('h2');
