@@ -9,7 +9,7 @@ function init() {
 	console.log('In init()');
 	//load all drinks
 	getAllDrinks();
-	//Event listeners for existing buttons/forms etc.
+	//Event listener for existing button
 	document.newDrinkForm.addDrinkButton.addEventListener('click', function(e) {
 		let form = document.newDrinkForm;
 		let theDrink = {
@@ -91,7 +91,7 @@ function getDrinkDetails(drinkId) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let drink = JSON.parse(xhr.responseText);
 				//console.log(drink);
-
+				
 				//hides divs not part of single drink view
 				document.getElementById('drinkListDiv').style.visibility = 'hidden';
 				document.getElementById('newDrinkFormDiv').style.visibility = 'hidden';
@@ -179,6 +179,7 @@ function addDrink(newDrink) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 201 || xhr.status === 200) {
 				getAllDrinks();
+				window.location.reload();
 			}
 			else {
 				displayError("Drink was not added.")
@@ -232,6 +233,7 @@ function updateDrink(drink) {
 	sizeInput.setAttribute("type", "number");
 	sizeInput.setAttribute("min", "0");
 	sizeInput.setAttribute("max", "1000");
+	sizeInput.required = true;
 	div2.appendChild(sizeInput);
 
 	let div3 = document.createElement('div');
@@ -249,6 +251,7 @@ function updateDrink(drink) {
 	caffeineInput.setAttribute("type", "number");
 	caffeineInput.setAttribute("min", "0");
 	caffeineInput.setAttribute("max", "2000");
+	caffeineInput.required = true;
 	div3.appendChild(caffeineInput);
 
 	let div4 = document.createElement('div');
