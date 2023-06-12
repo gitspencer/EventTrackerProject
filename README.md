@@ -4,7 +4,7 @@
 Full-stack Java Spring project backed by a MySQL database that implements a basic REST API to track caffeine consumption with the ability to perform CRUD on entries.
 
 ## Database
-![ER diagram](https://github.com/gitspencer/EventTrackerProject/ERDiagram)
+![ER diagram](.spencercomputer/SD/Java/EventTrackerProject/ERDiagram.png)
 - TODO: screenshot of ER diagram, description of entities.
 
 ## REST API
