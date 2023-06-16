@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.caffeine.entities.Drink;
 import com.skilldistillery.caffeine.services.DrinkService;
 
+@CrossOrigin({"*", "http://localhost/"})
 @RestController
 @RequestMapping("api")
 public class DrinkController {
@@ -43,14 +45,10 @@ public class DrinkController {
 	public Drink addDrink(@RequestBody Drink drink, HttpServletResponse res, HttpServletRequest req) {
 //		try {
 			drink = drinkService.createDrink(drink);
-//			if (drink == null) {
-//				res.setStatus(404);
-//			} else {
 //				res.setStatus(201);
 //				StringBuffer url = req.getRequestURL();
 //				url.append("/").append(drink.getId());
 //				res.setHeader("Location", url.toString());
-//			}
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //			res.setStatus(400);
