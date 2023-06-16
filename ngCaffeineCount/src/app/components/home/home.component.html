@@ -2,7 +2,19 @@
 		<br><h1 id="titleHeader">Caffeine Count</h1><br>
 
 		<div id="drinkDetailDiv" *ngIf="selected && !editDrink">
+      <img src="{{selected.imageUrl}}" class="imageLarge"/>
+      <h3>{{selected.name}}</h3>
+      <ul>
+        <li>Size: {{selected.size}} ounces</li>
+        <li>Caffeine: {{selected.caffeine}} milligrams</li>
+        <!-- NEED TO DO DATA AGGR -->
+        <li>Concentration: {{selected.caffeine}} / {{selected.size}} mg/fl oz</li>
+      </ul>
+      <button class="btn btn-primary me-1" (click)="setEditDrink()">Update</button>
+      <button class="btn btn-danger me-1" (click)="deleteDrink(selected.id)">Delete</button>
+      <button class="btn btn-warning me-1" (click)="loadDrinks()">Home</button>
 			<form name="drinkDetailForm">
+
 			</form>
 		</div>
 
