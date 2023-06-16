@@ -1,35 +1,35 @@
 
 		<br><h1 id="titleHeader">Caffeine Count</h1><br>
 
-		<div id="drinkDetailDiv">
+		<div id="drinkDetailDiv" *ngIf="selected && !editDrink">
 			<form name="drinkDetailForm">
 			</form>
 		</div>
 
-		<div id="newDrinkFormDiv">
+		<div id="newDrinkFormDiv" *ngIf="!selected">
 			<h5>Add a Drink</h5>
 			<form name="newDrinkForm">
 				<div class="form-group" >
 					<label for="name">Drink: </label>
-					<input class="form-control" type="text" name="name" placeholder="Cappuccino" required>
+					<input class="form-control" type="text" name="name" placeholder="Cappuccino" required [(ngModel)]="newDrink.name">
 				</div>
 				<div class="form-group" >
 					<label for="size">Size: </label>
-					<input class="form-control" type="number" min="0" max="1000" name="size" placeholder="ounces">
+					<input class="form-control" type="number" min="0" max="1000" name="size" placeholder="ounces" [(ngModel)]="newDrink.size">
 				</div>
 				<div class="form-group" >
 					<label for="caffeine">Caffeine: </label>
-					<input class="form-control"  type="number" min="0" max="2000" name="caffeine" placeholder="milligrams">
+					<input class="form-control"  type="number" min="0" max="2000" name="caffeine" placeholder="milligrams" [(ngModel)]="newDrink.caffeine">
 				</div>
 				<div class="form-group" >
 					<label for="imageUrl">Picture URL: </label>
-					<input class="form-control" type="text" name="imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/">
+					<input class="form-control" type="text" name="imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/" [(ngModel)]="newDrink.imageUrl">
 				</div><br>
-				<button class="btn btn-primary" name="addDrinkButton">Submit</button>
+				<button class="btn btn-primary" name="addDrinkButton" (click)="addDrink(newDrink)">Submit</button>
 			</form>
 		</div><br>
 
-		<div id="drinkListDiv">
+		<div id="drinkListDiv" *ngIf="!selected">
 		<!-- table of drinks, each clickable to show details -->
 			<table class="table" id="drinkListTable">
 				<thead class="table-light" id="drinkListTableHead">
@@ -41,7 +41,7 @@
 					</tr>
 				</thead>
 				<tbody id="drinkListTableBody">
-          <tr *ngFor="let drink of drinkList">
+          <tr *ngFor="let drink of drinkList" (click)="displayDrink(drink)">
             <td><img class="thumbnailImage" src="{{drink.imageUrl}}"/></td>
             <td>{{drink.name}}</td>
             <td>{{drink.size}}</td>
