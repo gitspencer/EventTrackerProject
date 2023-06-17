@@ -61,20 +61,24 @@ export class HomeComponent implements OnInit {
     this.editDrink = Object.assign({}, this.selected);
   }
 
-  updateDrink(drink: Drink, goToDetails: boolean = true): void {
-    this.drinkService.update(drink).subscribe({
-      next: (updatedDrink) => {
-        if (goToDetails) {
-          this.selected = updatedDrink;
+  updateDrink(drink: Drink | null, goToDetails: boolean = true): void {
+
+    if (drink) {
+      this.drinkService.update(drink).subscribe({
+        next: (updatedDrink) => {
+          if (goToDetails) {
+            this.editDrink = updatedDrink;
+            this.displayDrink(this.editDrink);
+          }
+          this.editDrink = null;
+          this.loadDrinks();
+        },
+        error: (updateError) => {
+          console.error('HomeComponent.updateDrink(): error on update');
+          console.error(updateError);
         }
-        this.editDrink = null;
-        this.loadDrinks();
-      },
-      error: (updateError) => {
-        console.error('HomeComponent.updateDrink(): error on update');
-        console.error(updateError);
-      }
-    });
+      });
+    }
   }
 
   deleteDrink(id: number): void {

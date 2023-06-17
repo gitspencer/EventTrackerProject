@@ -25,27 +25,26 @@
       <form name="drinkDetailForm">
         <div class="form-group">
           <label>Drink: </label>
-          <input [(ngModel)]="editDrink.name" placeholder="Cappuccino" class="form-control" required />
+          <input [(ngModel)]="editDrink.name" placeholder="Cappuccino" class="form-control" name="name" required />
         </div>
         <div class="form-group">
           <label>Size: </label>
-          <input [(ngModel)]="editDrink.size" placeholder="ounces" class="form-control" type="number" min="0" max="1000" required />
+          <input [(ngModel)]="editDrink.size" placeholder="ounces" class="form-control" type="number" min="0" max="1000" name="size" required />
         </div>
         <div class="form-group">
           <label>Caffeine: </label>
-          <input  [(ngModel)]="editDrink.caffeine" placeholder="milligrams" class="form-control" type="number" required />
+          <input  [(ngModel)]="editDrink.caffeine" placeholder="milligrams" class="form-control" type="number" min="0" max="2000" name="caffeine" required />
         </div>
         <div class="form-group">
           <label>Picture URL: </label>
-          <input [(ngModel)]="editDrink.imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/" class="form-control" required />
+          <input [(ngModel)]="editDrink.imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/" class="form-control" name="imageUrl" required />
         </div> <br>
 
 
-        <!-- ********* UPDATE NEEDS TO UPDATE AND SEND BACK TO HOME VIEW ********** -->
-
+        <!-- ********* UPDATE NEEDS TO UPDATE********** -->
         <button class="btn btn-primary me-1" (click)="updateDrink(editDrink)">Update</button>
         <button class="btn btn-warning me-1" (click)="displayHome()">Home</button>
-			</form>
+      </form>
     </div>
 
 		<div id="newDrinkFormDiv" *ngIf="!selected">

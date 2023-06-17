@@ -43,8 +43,8 @@ export class DrinkService {
           )
         );
       })
-      );
-    }
+    );
+  }
 
   update(drink : Drink): Observable<Drink> {
 
