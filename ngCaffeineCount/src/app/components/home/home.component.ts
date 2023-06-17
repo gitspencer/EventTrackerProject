@@ -90,4 +90,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public caffeineConcentration(drink: Drink | null): number {
+    if (drink == null || drink.caffeine == null || drink.size == null) {
+      return 0;
+    }
+    else if (drink.size > 0) {
+     return (drink.caffeine / drink.size);
+    } else {
+      return 0;
+    }
+  }
 }

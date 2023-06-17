@@ -7,12 +7,7 @@
       <ul>
         <li>Size: {{selected.size}} ounces</li>
         <li>Caffeine: {{selected.caffeine}} milligrams</li>
-
-
-        <!-- ************** NEED TO DO DATA AGGR OR PIPE **************** -->
-
-
-        <li>Concentration: {{selected.caffeine}} / {{selected.size}} mg/fl oz</li>
+        <li>Concentration: {{caffeineConcentration(selected) | number: '1.1-2'}} mg/fl oz</li>
       </ul>
       <button class="btn btn-primary me-1" (click)="setEditDrink()">Update</button>
       <button class="btn btn-danger me-1" (click)="deleteDrink(selected.id)">Delete</button>
