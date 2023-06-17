@@ -7,16 +7,44 @@
       <ul>
         <li>Size: {{selected.size}} ounces</li>
         <li>Caffeine: {{selected.caffeine}} milligrams</li>
-        <!-- NEED TO DO DATA AGGR -->
+
+
+        <!-- ************** NEED TO DO DATA AGGR OR PIPE **************** -->
+
+
         <li>Concentration: {{selected.caffeine}} / {{selected.size}} mg/fl oz</li>
       </ul>
       <button class="btn btn-primary me-1" (click)="setEditDrink()">Update</button>
       <button class="btn btn-danger me-1" (click)="deleteDrink(selected.id)">Delete</button>
-      <button class="btn btn-warning me-1" (click)="loadDrinks()">Home</button>
-			<form name="drinkDetailForm">
+      <button class="btn btn-warning me-1" (click)="displayHome()">Home</button>
+    </div>
 
+    <div id="editDrinkDiv" *ngIf="editDrink">
+      <form name="drinkDetailForm">
+        <div class="form-group">
+          <label>Drink: </label>
+          <input placeholder="Cappuccino" class="form-control" required [(ngModel)]="editDrink.name"/>
+        </div>
+        <div class="form-group">
+          <label>Size: </label>
+          <input placeholder="ounces" class="form-control" type="number" min="0" max="1000" required [(ngModel)]="editDrink.size"/>
+        </div>
+        <div class="form-group">
+          <label>Caffeine: </label>
+          <input placeholder="milligrams" class="form-control" type="number" required="" [(ngModel)]="editDrink.caffeine"/>
+        </div>
+        <div class="form-group">
+          <label>Drink: </label>
+          <input placeholder="Cappuccino" class="form-control" required [(ngModel)]="editDrink.imageUrl"/>
+        </div> <br>
+        <button class="btn btn-primary me-1" (click)="updateDrink(editDrink)">Update</button>
+
+        <!-- ********* HOME SHOULD SEND BACK TO HOME VIEW ********** -->
+
+
+        <button class="btn btn-warning me-1" (click)="displayHome()">Home</button>
 			</form>
-		</div>
+    </div>
 
 		<div id="newDrinkFormDiv" *ngIf="!selected">
 			<h5>Add a Drink</h5>

@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
     this.selected = drink;
   }
 
+  displayHome(): void {
+    this.selected = null;
+  }
+
   addDrink(newDrink: Drink) {
     this.drinkService.create(newDrink).subscribe({
       next: (createdDrink) => {
@@ -76,6 +80,7 @@ export class HomeComponent implements OnInit {
     this.drinkService.destroy(id).subscribe({
       next: () => {
         this.loadDrinks();
+        this.displayHome();
       },
       error: (errorDelete) => {
         console.error('HomeComponent.deleteDrink(): error deleting');
