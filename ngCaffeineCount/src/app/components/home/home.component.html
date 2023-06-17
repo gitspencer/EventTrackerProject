@@ -20,28 +20,35 @@
     </div>
 
     <div id="editDrinkDiv" *ngIf="editDrink">
+      <img src="{{editDrink.imageUrl}}" class="imageLarge"/>
+      <h3>{{editDrink.name}}</h3>
+      <ul>
+        <li>Size: {{editDrink.size}} ounces</li>
+        <li>Caffeine: {{editDrink.caffeine}} milligrams</li>
+      </ul>
+
       <form name="drinkDetailForm">
         <div class="form-group">
           <label>Drink: </label>
-          <input placeholder="Cappuccino" class="form-control" required [(ngModel)]="editDrink.name"/>
+          <input [(ngModel)]="editDrink.name" placeholder="Cappuccino" class="form-control" required />
         </div>
         <div class="form-group">
           <label>Size: </label>
-          <input placeholder="ounces" class="form-control" type="number" min="0" max="1000" required [(ngModel)]="editDrink.size"/>
+          <input [(ngModel)]="editDrink.size" placeholder="ounces" class="form-control" type="number" min="0" max="1000" required />
         </div>
         <div class="form-group">
           <label>Caffeine: </label>
-          <input placeholder="milligrams" class="form-control" type="number" required="" [(ngModel)]="editDrink.caffeine"/>
+          <input  [(ngModel)]="editDrink.caffeine" placeholder="milligrams" class="form-control" type="number" required />
         </div>
         <div class="form-group">
-          <label>Drink: </label>
-          <input placeholder="Cappuccino" class="form-control" required [(ngModel)]="editDrink.imageUrl"/>
+          <label>Picture URL: </label>
+          <input [(ngModel)]="editDrink.imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/" class="form-control" required />
         </div> <br>
+
+
+        <!-- ********* UPDATE NEEDS TO UPDATE AND SEND BACK TO HOME VIEW ********** -->
+
         <button class="btn btn-primary me-1" (click)="updateDrink(editDrink)">Update</button>
-
-        <!-- ********* HOME SHOULD SEND BACK TO HOME VIEW ********** -->
-
-
         <button class="btn btn-warning me-1" (click)="displayHome()">Home</button>
 			</form>
     </div>

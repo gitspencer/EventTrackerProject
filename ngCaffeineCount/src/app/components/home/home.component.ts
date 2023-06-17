@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   displayHome(): void {
     this.selected = null;
+    this.editDrink = null;
   }
 
   addDrink(newDrink: Drink) {
