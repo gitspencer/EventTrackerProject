@@ -50,5 +50,19 @@ Full-stack Java Spring project backed by a MySQL database that implements a basi
 ## Angular Front End
 
 ### Technologies Used
+- Angular
+- TypeScript
+- HTML
+- CSS
 
 ### Lessons Learned
+- Using Angular and TypeScript was much easier than creating HTML elements solely with JavaScript. Given I only have one entity in this project there was no need to use routing via the RouterModule import. Using ngIf logic in my HTML for which tables or divs to display was the more efficent way and allowed me to reuse most of my HTML code from the prior front end built last week.
+- I used a number pipe to limit output on my caffeineConcentration to no more than 2 decimals.
+- The only item that tripped me up was forgetting to add a name="" inside my HTML drinkDetailDiv inputs which caused my update method to not take the form inputs until this was added.
+- DrinkService contains the HTTPClient inside the constructor in order to pass appropriate URLs based on the request type, detailed error messages are included to help with debugging.
+- HomeComponent contains the logic for front end CRUD, page reloading method calls and displayHome() based on which HTML elements appropriate to show.
+
+
+
+
+
