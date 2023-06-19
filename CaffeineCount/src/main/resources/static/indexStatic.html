@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Caffeine Count</title>
-	<script type="text/javascript" src="js/script.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/main.css">
+<meta charset="UTF-8">
+<title>Caffeine Count</title>
+<script type="text/javascript" src="js/script.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 	<main id="topOfPage" class="container-fluid">
 
-		<br><h1 id="titleHeader">Caffeine Count</h1><br>
-		
+		<br>
+		<h1 id="titleHeader">Caffeine Count</h1>
+		<br>
+
 		<div id="drinkDetailDiv">
-			<form name="drinkDetailForm">
-			</form>
+			<form name="drinkDetailForm"></form>
 		</div>
-		
+
 		<div id="newDrinkFormDiv">
 			<h5>Add a Drink</h5>
 			<form name="newDrinkForm">
-				<div class="form-group" >
-					<label for="name">Drink: </label>
-					<input class="form-control" type="text" name="name" placeholder="Cappuccino" required>
+				<div class="form-group">
+					<label for="name">Drink: </label> <input class="form-control"
+						type="text" name="name" placeholder="Cappuccino" required>
 				</div>
-				<div class="form-group" >
-					<label for="size">Size: </label>
-					<input class="form-control" type="number" min="0" max="1000" name="size" placeholder="ounces">
+				<div class="form-group">
+					<label for="size">Size: </label> <input class="form-control"
+						type="number" min="0" max="1000" name="size" placeholder="ounces">
 				</div>
-				<div class="form-group" >
-					<label for="caffeine">Caffeine: </label>
-					<input class="form-control"  type="number" min="0" max="2000" name="caffeine" placeholder="milligrams">
+				<div class="form-group">
+					<label for="caffeine">Caffeine: </label> <input
+						class="form-control" type="number" min="0" max="2000"
+						name="caffeine" placeholder="milligrams">
 				</div>
-				<div class="form-group" >
-					<label for="imageUrl">Picture URL: </label>
-					<input class="form-control" type="text" name="imageUrl" placeholder="http://www.cabincreekcoffeealpena.com/">
-				</div><br>
+				<div class="form-group">
+					<label for="imageUrl">Picture URL: </label> <input
+						class="form-control" type="text" name="imageUrl"
+						placeholder="http://www.cabincreekcoffeealpena.com/">
+				</div>
+				<br>
 				<button class="btn btn-primary" name="addDrinkButton">Submit</button>
 			</form>
-		</div><br>
-		
+		</div>
+		<br>
+
 		<div id="drinkListDiv">
-		<!-- table of drinks, each clickable to show details -->
+			<!-- table of drinks, each clickable to show details -->
 			<table class="table" id="drinkListTable">
 				<thead class="table-light" id="drinkListTableHead">
 					<tr>
 						<th></th>
 						<th>Drink</th>
 						<th>Serving size (oz)</th>
-						<th>Caffeine (mg)</th>	
+						<th>Caffeine (mg)</th>
 					</tr>
 				</thead>
 				<tbody id="drinkListTableBody"></tbody>
 			</table>
 		</div>
-		
+
 	</main>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+	<footer>
+		<hr>
+		<a href="index.html">View Angular version</a>
+	</footer>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
 </body>
 </html>

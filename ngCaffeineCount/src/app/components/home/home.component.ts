@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
       next: (createdDrink) => {
         this.newDrink = new Drink();
         this.loadDrinks();
+        this.displayHome();
       },
       error: (createError) => {
         console.error('HomeComponent.addDrink(): error creating drink');
