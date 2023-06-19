@@ -43,17 +43,17 @@ public class DrinkController {
 	
 	@PostMapping("drinks")
 	public Drink addDrink(@RequestBody Drink drink, HttpServletResponse res, HttpServletRequest req) {
-//		try {
+		try {
 			drink = drinkService.createDrink(drink);
-//				res.setStatus(201);
-//				StringBuffer url = req.getRequestURL();
-//				url.append("/").append(drink.getId());
-//				res.setHeader("Location", url.toString());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			res.setStatus(400);
-//			drink = null;
-//		}
+				res.setStatus(201);
+				StringBuffer url = req.getRequestURL();
+				url.append("/").append(drink.getId());
+				res.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			drink = null;
+		}
 		return drink;
 	}
 	
