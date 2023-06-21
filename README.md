@@ -1,4 +1,5 @@
 # EventTrackerProject
+[CaffeineCount](http://18.116.157.70:8080/CaffeineCount)
 
 ## Description
 Full-stack Java Spring project backed by a MySQL database that implements a basic REST API to track caffeine consumption with the ability to perform CRUD on entries.
